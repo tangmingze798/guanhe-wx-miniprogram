@@ -1,0 +1,89 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 56rpx 20rpx 44rpx;
+  border-radius: 0 0 32rpx 32rpx;
+  background: radial-gradient(ellipse at 50% -10%, #241b10 0%, #0d0b08 65%);
+}
+
+/* 流光：一道金色光带斜扫而过 */
+.bg-flow {
+  position: absolute; left: -30%; top: -30%; width: 160%; height: 160%; z-index: 0;
+  background: linear-gradient(115deg,
+    transparent 38%,
+    rgba(176,141,87,.10) 46%,
+    rgba(216,182,117,.24) 50%,
+    rgba(176,141,87,.10) 54%,
+    transparent 62%);
+  background-size: 220% 220%;
+  animation: flow 7s linear infinite;
+  pointer-events: none;
+}
+@keyframes flow { 0% { background-position: 0% 0%; } 100% { background-position: 220% 220%; } }
+
+/* 呼吸光晕：烘托神秘感 */
+.aura {
+  position: absolute; left: 50%; top: 100rpx; width: 380rpx; height: 380rpx;
+  transform: translate(-50%, -50%); z-index: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(176,141,87,.22), rgba(176,141,87,0) 65%);
+  animation: breathe 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes breathe {
+  0%, 100% { opacity: .5; transform: translate(-50%, -50%) scale(.9); }
+  50%      { opacity: 1;  transform: translate(-50%, -50%) scale(1.12); }
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+/* 太极图：用真实子 view 拼，固定色值，不依赖伪元素 / 渐变 / var() */
+.taiji-wrap { position: relative; width: 150rpx; height: 150rpx; margin: 0 auto 26rpx; }
+.taiji {
+  width: 150rpx; height: 150rpx; border-radius: 50%; margin: 0 auto;
+  position: relative; overflow: hidden;
+  background: #ece3d2;                 /* 阳（米白） */
+  box-shadow: 0 0 50rpx rgba(176,141,87,.55), inset 0 0 0 2rpx rgba(176,141,87,.45);
+  animation: spin 14s linear infinite;
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.taiji .t-dark { position: absolute; right: 0; top: 0; width: 50%; height: 100%; background: #14110e; border-radius: 0 999rpx 999rpx 0; }   /* 阴（墨黑）右半 */
+.taiji .t-top  { position: absolute; left: 25%; top: 0;  width: 50%; height: 50%; background: #ece3d2; border-radius: 50%; }  /* 阳鱼头 */
+.taiji .t-bot  { position: absolute; left: 25%; bottom: 0; width: 50%; height: 50%; background: #14110e; border-radius: 50%; }  /* 阴鱼头 */
+.eye { position: absolute; width: 20rpx; height: 20rpx; border-radius: 50%; left: 65rpx; z-index: 2; }
+.eye-t { top: 27rpx;  background: #14110e; }   /* 阳鱼眼（黑） */
+.eye-b { top: 103rpx; background: #ece3d2; }   /* 阴鱼眼（白） */
+
+.kicker { font-size: 24rpx; color: var(--muted); letter-spacing: 6rpx; }
+.title { font-size: 96rpx; font-weight: 800; color: var(--txt); letter-spacing: 14rpx; margin-top: 12rpx; text-shadow: 0 2rpx 16rpx rgba(176,141,87,.4); }
+.sub { font-size: 32rpx; color: var(--gold-bright); letter-spacing: 10rpx; margin-top: 6rpx; }
+.hero-hint { font-size: 22rpx; color: var(--muted); margin-top: 24rpx; line-height: 1.7; }
+
+/* 入口卡片 */
+.entry {
+  display: flex; align-items: center;
+  background: linear-gradient(135deg, var(--panel2), var(--panel));
+  border: 1rpx solid var(--line); border-left: 6rpx solid var(--gold);
+  border-radius: 22rpx;
+  padding: 30rpx; margin-bottom: 22rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,.25);
+  transition: transform .12s;
+}
+.entry-hover { transform: scale(.985); background: linear-gradient(135deg, rgba(176,141,87,.16), var(--panel)); }
+.entry-ico {
+  width: 84rpx; height: 84rpx; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 46rpx; color: var(--bg);
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  box-shadow: 0 4rpx 14rpx rgba(176,141,87,.4); margin-right: 24rpx;
+}
+.entry-main { flex: 1; }
+.entry-name { font-size: 40rpx; font-weight: 800; color: var(--txt); letter-spacing: 4rpx; }
+.entry-desc { font-size: 24rpx; color: var(--muted); margin-top: 12rpx; line-height: 1.7; }
+.entry-arrow { font-size: 56rpx; color: var(--gold); margin-left: 16rpx; }
+
+/* 免责声明行 */
+.disclaimer {
+  text-align: center; font-size: 22rpx; letter-spacing: 2rpx;
+  color: var(--muted); padding: 28rpx 30rpx 40rpx; line-height: 1.8;
+}

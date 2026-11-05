@@ -1,0 +1,16 @@
+.center { text-align: center; padding: 60rpx 0; }
+.err { color: var(--red-soft); }
+
+.h-top { display: flex; align-items: center; gap: 14rpx; margin-bottom: 14rpx; }
+.htime { margin-left: auto; font-size: 20rpx; color: var(--muted); }
+
+.hsum { font-size: 28rpx; color: var(--txt); line-height: 1.7; }
+.hq { font-size: 24rpx; color: var(--muted); line-height: 1.7; margin-top: 8rpx; }
+
+.hdel {
+  display: inline-block; margin-top: 14rpx;
+  font-size: 22rpx; color: var(--red-soft);
+  border: 1rpx solid rgba(224,122,95,.5); border-radius: 999rpx;
+  padding: 4rpx 22rpx;
+}
+.hdel:active { background: rgba(224,122,95,.15); }

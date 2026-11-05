@@ -1,0 +1,30 @@
+.numrow { display: flex; align-items: center; justify-content: center; gap: 16rpx; margin: 18rpx 0; }
+.ni { width: 150rpx; background: var(--panel2); border: 1rpx solid var(--line); border-radius: 12rpx; padding: 16rpx; text-align: center; color: var(--txt); font-size: 28rpx; }
+
+.timerow { display: flex; gap: 14rpx; margin: 18rpx 0; }
+.picker { flex: 1; background: var(--panel2); border: 1rpx solid var(--line); border-radius: 12rpx; padding: 18rpx 0; text-align: center; color: var(--txt); font-size: 26rpx; }
+
+/* 掌图 */
+.palm { margin: 10rpx 0 24rpx; }
+.palm-title { font-size: 22rpx; color: var(--muted); text-align: center; margin-bottom: 10rpx; letter-spacing: 2rpx; }
+.palm-body { position: relative; width: 600rpx; height: 717rpx; margin: 0 auto; background: radial-gradient(120% 80% at 50% 30%, rgba(176,141,87,.08), var(--panel) 70%); border: 1rpx solid rgba(176,141,87,.35); border-radius: 24rpx; box-shadow: 0 10rpx 30rpx rgba(0,0,0,.3), inset 0 0 40rpx rgba(176,141,87,.06); }
+.segcell { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--panel2); border: 1rpx solid var(--line); border-radius: 18rpx; transition: all .15s; }
+.segcell .cn { font-size: 30rpx; color: var(--txt); font-weight: 700; text-shadow: 0 1rpx 2rpx rgba(0,0,0,.5); }
+.segcell .ce { font-size: 18rpx; color: var(--muted); margin-top: 6rpx; }
+.segcell.lit { border-color: var(--gold); box-shadow: 0 0 20rpx rgba(176,141,87,.5); background: rgba(176,141,87,.16); }
+.segcell.landed { border: 3rpx solid var(--red); box-shadow: 0 0 24rpx rgba(224,122,95,.65); background: rgba(224,122,95,.16); }
+.thumb { position: absolute; width: 60rpx; height: 60rpx; border-radius: 50%; background: linear-gradient(135deg,#e0b25f,#b08d57); color: #14110e; text-align: center; line-height: 60rpx; font-size: 30rpx; font-weight: 700; opacity: 0; transition: left .15s, top .15s; z-index: 5; box-shadow: 0 0 18rpx rgba(224,178,95,.9); }
+.status { font-size: 24rpx; color: var(--gold-bright); text-align: center; margin-top: 16rpx; min-height: 34rpx; letter-spacing: 1rpx; }
+
+/* 三指图例 */
+.palm-legend { display: flex; gap: 12rpx; margin: 6rpx 0 20rpx; }
+.pl { flex: 1; text-align: center; font-size: 20rpx; color: var(--muted); background: var(--panel2); border: 1rpx solid var(--line); border-radius: 12rpx; padding: 12rpx 6rpx; line-height: 1.5; }
+.pl-f { display: block; color: var(--gold-bright); font-weight: 700; margin-bottom: 4rpx; font-size: 22rpx; }
+
+/* 三传卡片 */
+.chuai-top { display: flex; align-items: center; gap: 18rpx; margin-bottom: 10rpx; }
+.cn-big { font-size: 44rpx; font-weight: 800; color: var(--txt); letter-spacing: 4rpx; }
+.gua-meta { font-size: 22rpx; color: var(--muted); margin-bottom: 14rpx; }
+.yi { font-size: 26rpx; color: var(--txt); line-height: 1.7; }
+.vsec { font-size: 23rpx; color: var(--muted); line-height: 1.7; margin-top: 10rpx; }
+.chainline { font-size: 26rpx; color: var(--txt); line-height: 1.8; margin-top: 12rpx; }

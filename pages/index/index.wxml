@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="hero fade-up">
+    <view class="bg-flow"></view>
+    <view class="aura"></view>
+    <view class="hero-inner">
+      <view class="taiji-wrap">
+        <view class="taiji">
+          <view class="t-dark"></view>
+          <view class="t-top"></view>
+          <view class="t-bot"></view>
+          <view class="eye eye-t"></view>
+          <view class="eye eye-b"></view>
+        </view>
+      </view>
+      <view class="kicker">象数推演 · 传统文化研习</view>
+      <view class="title">观梅数</view>
+      <view class="sub">梅花易数 · 小六壬</view>
+      <view class="divider"><view class="ln"></view><view class="dia">❖</view><view class="ln"></view></view>
+      <view class="hero-hint">点下方卡片进入对应推演台；起卦前先想清楚“所占何事”。</view>
+    </view>
+  </view>
+
+  <view class="entry fade-up" bindtap="goMeihua" hover-class="entry-hover">
+    <view class="entry-ico">☯</view>
+    <view class="entry-main">
+      <view class="entry-name">梅花易数</view>
+      <view class="entry-desc">以数起卦，观本·互·变三卦，体用生克断其趋，依《周易》卦象义理。</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+
+  <view class="entry fade-up" bindtap="goXlr" hover-class="entry-hover">
+    <view class="entry-ico">☰</view>
+    <view class="entry-main">
+      <view class="entry-name">小六壬</view>
+      <view class="entry-desc">九宫真传，月上起日、日上起时，掐指三传知前中后之脉络。</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+
+  <view class="entry fade-up" bindtap="goHistory" hover-class="entry-hover">
+    <view class="entry-ico">☷</view>
+    <view class="entry-main">
+      <view class="entry-name">卦例历史</view>
+      <view class="entry-desc">云端存档每一次起卦起课（仅本人可见），随时回看复盘。</view>
+    </view>
+    <view class="entry-arrow">›</view>
+  </view>
+
+  <view class="card fade-up">
+    <view class="section-title">说明</view>
+    <view class="hint">本程序依据《周易》卦象义理与民间象数之法设算，属传统文化研习与趣味推演，不构成任何现实决策、投资、医疗或人生建议。古人云“不动不占”，心无实所问，则不必起；起而有疑，当以明理为先。</view>
+  </view>
+
+  <view class="disclaimer fade-up">仅供娱乐 · 无迷信成分 · 切勿当真决策</view>
+</view>

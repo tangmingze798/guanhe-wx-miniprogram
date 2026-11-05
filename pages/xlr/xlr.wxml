@@ -1,0 +1,100 @@
+<view class="container">
+  <view class="page-hint">想算卦 ▸ 选起课方式（报数 / 时间 / 随机），填好“所占之事”，点【掐指起课】。九宫序：大安1→留连2→速喜3→赤口4→小吉5→空亡6→病符7→桃花8→天德9。</view>
+
+  <view class="card">
+    <view class="seg">
+      <view class="opt {{xmode==='num'?'active':''}}" data-xmode="num" bindtap="setXMode">报数</view>
+      <view class="opt {{xmode==='time'?'active':''}}" data-xmode="time" bindtap="setXMode">时间</view>
+      <view class="opt {{xmode==='rand'?'active':''}}" data-xmode="rand" bindtap="setXMode">随机</view>
+    </view>
+
+    <view wx:if="{{xmode==='num'}}" class="numrow">
+      <input class="ni" type="number" placeholder="数一" value="{{x1}}" bindinput="onX1" maxlength="4"/>
+      <input class="ni" type="number" placeholder="数二" value="{{x2}}" bindinput="onX2" maxlength="4"/>
+      <input class="ni" type="number" placeholder="数三" value="{{x3}}" bindinput="onX3" maxlength="4"/>
+    </view>
+
+    <view wx:if="{{xmode==='time'}}" class="timerow">
+      <picker mode="selector" range="{{monthArr}}" value="{{xm}}" bindchange="onXm"><view class="picker">{{monthArr[xm]}}</view></picker>
+      <picker mode="selector" range="{{dayArr}}" value="{{xd}}" bindchange="onXd"><view class="picker">{{dayArr[xd]}}</view></picker>
+      <picker mode="selector" range="{{hourArr}}" value="{{xt}}" bindchange="onXt"><view class="picker">{{hourArr[xt]}}</view></picker>
+    </view>
+
+    <view class="hint">{{xnote}}</view>
+
+    <view class="label">所占之事（选填，填了会针对你的问题解读）</view>
+    <input class="qinput" placeholder="例如：此事可否成？寻物何在？出行顺否？" value="{{xq}}" bindinput="onXq" maxlength="40"/>
+
+    <view class="btn mt" hover-class="btn-hover" bindtap="cast">{{casting?'掐指中…':'掐 指 起 课'}}</view>
+  </view>
+
+  <!-- 掌图 / 掐指动画 -->
+  <view class="palm">
+    <view class="palm-title">左 手 · 掌 心（指尖朝上）</view>
+    <view class="palm-body">
+      <view wx:for="{{palmCells}}" wx:for-item="c" wx:key="n"
+            class="segcell {{litMap[c.n]?'lit':''}} {{landedMap[c.n]?'landed':''}}"
+            style="{{c.style}}">
+        <view class="cn">{{c.name}}</view>
+        <view class="ce">{{c.el}} · {{c.n}}</view>
+      </view>
+      <view class="thumb" style="{{thumbStyle}}">指</view>
+    </view>
+    <view class="status">{{status}}</view>
+  </view>
+
+  <view class="palm-legend">
+    <view class="pl"><text class="pl-f">食指</text>大安·留连·速喜</view>
+    <view class="pl"><text class="pl-f">中指</text>赤口·小吉·空亡</view>
+    <view class="pl"><text class="pl-f">无名指</text>病符·桃花·天德</view>
+  </view>
+
+  <block wx:if="{{showResult}}">
+    <view class="card fade-up">
+      <view class="section-title">{{nums}}</view>
+    </view>
+
+    <button class="share-btn" open-type="share" hover-class="share-btn-hover">转 发 给 好 友</button>
+
+    <view class="card fade-up" wx:for="{{chuan}}" wx:for-item="cc" wx:key="lab">
+      <view class="gua-lab">{{cc.lab}}</view>
+      <view class="chuai-top">
+        <view class="cn-big">{{cc.name}}</view>
+        <view class="badge lv-{{cc.lvKey}}">{{cc.lv}}</view>
+      </view>
+      <view class="gua-meta">{{cc.el}} · {{cc.dir}} · {{cc.color}}色 · {{cc.extra}}</view>
+      <view class="yi">{{cc.plain}}</view>
+      <view class="vsec">{{cc.verse}}</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">五行生克链</view>
+      <view class="chainline" wx:for="{{chain}}" wx:for-item="cl" wx:key="label">
+        {{cl.label}}：<text class="gold">{{cl.a}}（{{cl.ae}}） → {{cl.b}}（{{cl.be}}）</text>　{{cl.rel}}
+      </view>
+      <view class="hint" style="margin-top:10rpx;">口传读法：生我者为助力贵人，我生者为付出铺路，我克者为财、费力可得，克我者为阻力、宜避其锋。</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">重复宫 · 主题放大</view>
+      <block wx:if="{{dupe.has}}">
+        <view class="ptext" wx:for="{{dupe.items}}" wx:for-item="d" wx:key="name">【{{d.name}}×{{d.cnt}}】{{d.note}}</view>
+      </block>
+      <view class="hint" wx:else>三传各异、无重复主题——事情前中后三段各有其象，按生克链逐段读即可。</view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">三传连读{{xq ? ' · 所占「'+xq+'」' : ''}}</view>
+      <view class="ptext" wx:for="{{story}}" wx:for-item="s" wx:key="index">{{s}}</view>
+      <view wx:if="{{catCard}}" class="catcard">
+        <view class="catname">就「{{catCard.name}}」而言</view>
+        <view class="hint">{{catCard.text}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="section-title">民俗化解参考（旧俗了解，非建议）</view>
+      <view class="hint" wx:for="{{resolve}}" wx:for-item="rs" wx:key="index" style="margin-top:8rpx;">· {{rs}}</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="page-hint">每次起卦/起课会自动存入你的云数据库，仅本人可见。点条目右下「删除」可移除。</view>
+
+  <view wx:if="{{loading}}" class="hint center">读取中…</view>
+  <view wx:elif="{{err}}" class="hint center err">{{err}}</view>
+  <view wx:elif="{{!list.length}}" class="hint center">还没有卦例。回首页起一卦吧。</view>
+
+  <view class="card fade-up" wx:for="{{list}}" wx:for-item="it" wx:key="_id">
+    <view class="h-top">
+      <view class="badge {{it.type==='meihua' ? 'lv-ping' : 'lv-ban'}}">{{it.type==='meihua' ? '梅花易数' : '小六壬'}}</view>
+      <view class="badge lv-{{it.lvKey}}">{{it.lv}}</view>
+      <view class="htime">{{it.t}}</view>
+    </view>
+    <view class="hsum">{{it.summary}}</view>
+    <view class="hq" wx:if="{{it.q}}">所占：{{it.q}}</view>
+    <view class="hdel" data-id="{{it._id}}" bindtap="onDel">删除</view>
+  </view>
+</view>

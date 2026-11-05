@@ -1,0 +1,83 @@
+<view class="container">
+  <view class="page-hint">想算卦 ▸ 选起卦方式（随机 / 数字 / 时间），填好“所占之事”，点【起卦】。</view>
+
+  <view class="card">
+    <view class="seg">
+      <view class="opt {{mode==='rand'?'active':''}}" data-mode="rand" bindtap="setMode">随机</view>
+      <view class="opt {{mode==='num'?'active':''}}" data-mode="num" bindtap="setMode">数字</view>
+      <view class="opt {{mode==='time'?'active':''}}" data-mode="time" bindtap="setMode">时间</view>
+    </view>
+
+    <view wx:if="{{mode==='num'}}" class="numrow">
+      <input class="ni" type="number" placeholder="上卦数" value="{{n1}}" bindinput="onN1" maxlength="6"/>
+      <text class="plus">＋</text>
+      <input class="ni" type="number" placeholder="下卦数" value="{{n2}}" bindinput="onN2" maxlength="6"/>
+    </view>
+
+    <view class="hint">{{note}}</view>
+
+    <view class="label">所占之事（选填，填了会针对你的问题解读）</view>
+    <input class="qinput" placeholder="例如：此事可否成？出行是否顺？谋职如何？" value="{{q}}" bindinput="onQ" maxlength="40"/>
+
+    <view class="btn mt" hover-class="btn-hover" bindtap="cast">{{casting?'起卦中…':'起 卦'}}</view>
+  </view>
+
+  <view wx:if="{{casting}}" class="coins">
+    <view class="coin">☯</view><view class="coin">☯</view><view class="coin">☯</view>
+  </view>
+
+  <block wx:if="{{showResult}}">
+    <!-- 吉凶大结论 -->
+    <view class="hero-verdict lv-bg-{{verdict.lvKey}} fade-up">
+      <view class="vbig">{{verdict.lv}}</view>
+      <view class="vtag">体用格局 · {{verdict.tag}}</view>
+      <view class="vplain">{{verdict.plain}}</view>
+      <view class="vplain gold">通俗讲：{{verdict.tagplain}}</view>
+    </view>
+    <button class="share-btn" open-type="share" hover-class="share-btn-hover">转 发 给 好 友</button>
+
+    <!-- 三卦 -->
+    <view class="card fade-up" wx:for="{{guas}}" wx:for-item="item" wx:key="lab">
+      <view class="gua-lab">{{item.lab}}</view>
+      <view class="hex">
+        <view class="lnrow" wx:for="{{item.lines}}" wx:for-item="ln" wx:key="index">
+          <block wx:if="{{ln.yang}}"><view class="bar {{ln.dong?'dong':''}}"></view></block>
+          <block wx:else><view class="yin {{ln.dong?'dong':''}}"><view class="half"></view><view class="half"></view></view></block>
+        </view>
+      </view>
+      <view class="gua-name">{{item.name}}</view>
+      <view class="gua-meta">上 {{item.upName}} · 下 {{item.downName}}</view>
+      <view class="tuan">「{{item.tuan}}」</view>
+      <view class="yi">义理：{{item.yi}}</view>
+      <view class="yi red-soft">白话：{{item.bai}}</view>
+    </view>
+
+    <!-- 技术细节 · 体用生克 -->
+    <view class="card">
+      <view class="section-title">技术细节 · 体用生克 [{{verdict.tag}}]</view>
+      <view class="hint">体（主/我/内）= {{verdict.tiName}}（{{verdict.tiEl}}），用（客/事/外）= {{verdict.yongName}}（{{verdict.yongEl}}）。动爻在第 {{verdict.dong}} 爻，居{{verdict.dongInTi?'体卦（主方、自身所动）':'用卦（客方、外缘所动）'}}。{{verdict.desc}}</view>
+    </view>
+
+    <!-- 时序 -->
+    <view class="card">
+      <view class="section-title">时序观</view>
+      <view class="hint">{{trend}}</view>
+    </view>
+
+    <!-- 所占之事分析 -->
+    <view class="card">
+      <view class="section-title">所占之事分析</view>
+      <view class="hint">所占：{{q ? '「'+q+'」' : '（未填所占之事，以下为通论）'}}</view>
+      <view class="ptext" wx:for="{{analyze}}" wx:for-item="a" wx:key="index">{{a}}</view>
+      <view wx:if="{{catCard}}" class="catcard">
+        <view class="catname">就「{{catCard.name}}」而言</view>
+        <view class="hint">{{catCard.text}}</view>
+      </view>
+    </view>
+
+    <!-- 推数明理 -->
+    <view class="card">
+      <view class="hint">{{principle}}</view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/meihua/meihua",
+    "pages/xlr/xlr",
+    "pages/history/history"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#14110e",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "观梅数 · 象数推演",
+    "backgroundColor": "#14110e",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
